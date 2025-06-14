@@ -221,11 +221,6 @@ if ($jenis_laporan == 'peminjaman') {
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="backup.bat">
-                                <i class="bi bi-cloud-arrow-up me-2"></i> Backup
-                            </a>
-                        </li>
-                        <li class="nav-item mt-5">
                             <a class="nav-link text-danger" href="../logout.php">
                                 <i class="bi bi-box-arrow-left me-2"></i> Logout
                             </a>
