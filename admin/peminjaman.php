@@ -272,7 +272,7 @@ $peminjaman_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                 </td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <a href="detail-peminjaman.php?id=<?php echo $pinjam['id']; ?>" class="btn btn-sm btn-info">
+                                                        <a href="detail_peminjaman.php?id=<?php echo $pinjam['id']; ?>" class="btn btn-sm btn-info">
                                                             <i class="bi bi-eye"></i> Detail
                                                         </a>
                                                         

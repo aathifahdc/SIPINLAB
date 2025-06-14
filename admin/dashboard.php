@@ -268,7 +268,7 @@ $log_aktivitas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                                     <?php endif; ?>
                                                 </td>
                                                 <td>
-                                                    <a href="detail-peminjaman.php?id=<?php echo $pinjam['id']; ?>" class="btn btn-sm btn-info">
+                                                    <a href="detail_peminjaman.php?id=<?php echo $pinjam['id']; ?>" class="btn btn-sm btn-info">
                                                         <i class="bi bi-eye"></i> Detail
                                                     </a>
                                                 </td>
