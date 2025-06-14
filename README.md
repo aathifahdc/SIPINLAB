@@ -1,13 +1,9 @@
-````markdown
 # 🧪 SIPINLAB – Sistem Peminjaman Alat Laboratorium Komputer Terdistribusi
 SIPINLAB adalah sistem berbasis web yang dirancang untuk mengelola peminjaman alat-alat laboratorium komputer secara efisien dan konsisten antar berbagai laboratorium di lingkungan kampus. Sistem ini dibangun menggunakan PHP dan MYSQL, dan menerapkan **procedure**, **trigger**, **transaction**, **function**, serta **backup otomatis menggunakan task scheduler**, sebagai bagian dari implementasi prinsip Pemrosesan Data Terdistribusi.
 
 ![Home](assets/img/home.png)
 
 ## 📌 Detail Konsep
-
-### ⚠️ Disclaimer
-Fitur-fitur seperti **stored procedure**, **trigger**, **transaction**, dan **function** dalam sistem ini didesain sesuai dengan kebutuhan SIPINLAB. Penerapannya bisa berbeda pada sistem lain tergantung kebutuhan masing-masing.
 
 ---
 
