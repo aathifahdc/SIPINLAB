@@ -256,24 +256,6 @@ Trigger ini menjamin **validasi peminjaman dilakukan di level database**, bahkan
 
 ---
 
-
-### 🔄 Transaction
-
-Setiap proses penting (seperti peminjaman dan pengembalian) dibungkus dalam transaksi agar tidak ada perubahan parsial.
-
-```php
-try {
-    $this->conn->beginTransaction();
-
-    $stmt = $this->conn->prepare("CALL pinjam_alat(?, ?, ?)");
-    $stmt->execute([$npm, $idAlat, $tanggal]);
-
-    $this->conn->commit();
-} catch (PDOException $e) {
-    $this->conn->rollBack();
-}
-```
-
 ### 💾 Backup Otomatis + Task Scheduler
 
 Agar data tidak hilang, SIPINLAB menggunakan dua metode backup otomatis:
