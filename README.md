@@ -177,12 +177,6 @@ $status = $stmt->fetch(PDO::FETCH_ASSOC)['status'];
 
 ---
 
-
-
-Terima kasih! Berdasarkan isi file `SIPINLAB.sql`, berikut adalah pembaruan bagian `🚨 Trigger` dan `💾 Backup Otomatis + Task Scheduler` dalam README SIPINLAB kamu. Seluruh isi disesuaikan langsung dari implementasi sebenarnya.
-
----
-
 ### 🚨 Trigger
 
 SIPINLAB menggunakan trigger di level database untuk **mencegah kondisi tidak valid** selama proses peminjaman atau perubahan status peminjaman.
@@ -258,7 +252,7 @@ Trigger ini menjamin **validasi peminjaman dilakukan di level database**, bahkan
 
 ### 💾 Backup Otomatis + Task Scheduler
 
-Agar data tidak hilang, SIPINLAB menggunakan dua metode backup otomatis:
+Agar data tidak hilang, SIPINLAB menggunakan metode backup otomatis:
 
 ---
 
@@ -301,42 +295,6 @@ endlocal
 2. Atur Triggers → Daily → Waktu 01:00
 3. Atur Action → Start a program → arahkan ke `backup.bat`
 
----
-
-#### ✅ 2. Backup Otomatis via `cron_backup.php`
-
-Backup dijalankan lewat cron job yang memanggil skrip PHP `cron_backup.php`.
-
-📄 `cron_backup.php`:
-
-```php
-require_once '../config/database.php';
-
-$database = new Database();
-$backup_dir = "../backups/";
-
-$result = $database->backupDatabase($backup_dir);
-
-$conn = $database->getConnection();
-$query = "INSERT INTO log_aktivitas (aktivitas, detail) 
-          VALUES ('Backup otomatis', ?)";
-$stmt = $conn->prepare($query);
-$stmt->execute([$result ? 'Backup berhasil' : 'Backup gagal']);
-
-echo date('Y-m-d H:i:s') . " - Backup " . ($result ? "berhasil" : "gagal") . "\n";
-```
-
-📌 **Penjelasan Singkat:**
-
-* File ini menjalankan proses backup database menggunakan fungsi `backupDatabase()` di class `Database`.
-* Hasil backup disimpan di folder `../backups/`.
-* Catatan backup disimpan ke tabel `log_aktivitas`.
-* Hasil backup bisa dicek lewat log cron.
-
-📋 **Contoh cron job (Linux):**
-
-```
-0 1 * * * /usr/bin/php /path/to/sipinlab/cron/cron_backup.php
 ```
 
 Artinya: Jalankan backup setiap hari jam 01:00 pagi.
