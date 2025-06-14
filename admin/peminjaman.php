@@ -103,31 +103,115 @@ $peminjaman_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>SIPINLAB - Kelola Peminjaman</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        .sidebar {
-            min-height: 100vh;
-            background-color: #343a40;
-            color: #fff;
-        }
-        .sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .sidebar .nav-link:hover {
-            color: #fff;
-        }
-        .sidebar .nav-link.active {
-            color: #fff;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .main-content {
-            padding: 20px;
-        }
-        .card-dashboard {
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+<style>
+    :root {
+        --black-primary: #121212;       /* Hitam utama */
+        --black-secondary: #1E1E1E;    /* Hitam sekunder */
+        --black-light: #2D2D2D;        /* Hitam lebih terang */
+        --gold-primary: #FFD700;       /* Kuning emas */
+        --gold-secondary: #FFC107;     /* Kuning lebih gelap */
+        --gold-light: #FFF9C4;         /* Kuning sangat muda */
+        --text-white: #FFFFFF;         /* Teks putih */
+        --text-muted: rgba(255, 255, 255, 0.7); /* Teks muted */
+    }
+
+    .sidebar {
+        min-height: 100vh;
+        background-color: var(--black-primary);
+        color: var(--text-white);
+        border-right: 1px solid rgba(255, 215, 0, 0.1);
+    }
+
+    .sidebar .nav-link {
+        color: var(--text-muted);
+        padding: 12px 20px;
+        margin: 4px 0;
+        border-radius: 4px;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar .nav-link:hover {
+        color: var(--gold-primary);
+        background-color: var(--black-light);
+    }
+
+    .sidebar .nav-link.active {
+        color: var(--black-primary);
+        background-color: var(--gold-primary);
+        font-weight: 600;
+        box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+    }
+
+    .sidebar .nav-link i {
+        margin-right: 10px;
+        color: var(--gold-secondary);
+    }
+
+    .main-content {
+        padding: 25px;
+        background-color: #F8F9FA;
+        min-height: 100vh;
+    }
+
+    .card-dashboard {
+        margin-bottom: 25px;
+        border-radius: 8px;
+        border: none;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+        border-top: 3px solid var(--gold-primary);
+    }
+
+    .card-dashboard:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .stats-card {
+        transition: all 0.3s ease;
+        background-color: white;
+    }
+
+    .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+
+    .stats-card .card-title {
+        color: var(--black-primary);
+        font-weight: 600;
+    }
+
+    .stats-card .card-value {
+        color: var(--gold-secondary);
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    /* Tambahan elemen UI */
+    .navbar {
+        background-color: var(--black-primary) !important;
+        border-bottom: 1px solid rgba(255, 215, 0, 0.15);
+    }
+
+    .navbar-brand {
+        color: var(--gold-primary) !important;
+        font-weight: 700;
+    }
+
+    .btn-gold {
+        background-color: var(--gold-primary);
+        color: var(--black-primary);
+        font-weight: 600;
+        border: none;
+    }
+
+    .btn-gold:hover {
+        background-color: var(--gold-secondary);
+        color: var(--black-primary);
+    }
+</style>
 </head>
 <body>
     <div class="container-fluid">

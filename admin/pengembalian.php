@@ -66,31 +66,232 @@ $peminjaman_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>SIPINLAB - Pengembalian Alat</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        .sidebar {
-            min-height: 100vh;
-            background-color: #343a40;
-            color: #fff;
-        }
-        .sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.8);
-        }
-        .sidebar .nav-link:hover {
-            color: #fff;
-        }
-        .sidebar .nav-link.active {
-            color: #fff;
-            background-color: rgba(255, 255, 255, 0.1);
-        }
-        .main-content {
-            padding: 20px;
-        }
-        .card-dashboard {
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-    </style>
+<style>
+    :root {
+        /* Enhanced Professional Black & Gold Color Palette */
+        --black-900: #0D0D0D;       /* Deepest black */
+        --black-800: #1A1A1A;       /* Primary black */
+        --black-700: #262626;       /* Secondary black */
+        --black-600: #333333;       /* Lighter black */
+        --gold-600: #E6B800;       /* Dark gold */
+        --gold-500: #FFC107;       /* Primary gold */
+        --gold-400: #FFD700;       /* Bright gold */
+        --gold-300: #FFE44D;       /* Light gold */
+        --white: #FFFFFF;
+        --gray-100: #F5F5F5;
+        --gray-200: #EEEEEE;
+    }
+
+    /* Sidebar - Premium Black Theme */
+    .sidebar {
+        min-height: 100vh;
+        background-color: var(--black-800);
+        color: var(--white);
+        border-right: 1px solid rgba(255, 193, 7, 0.15);
+        padding: 1.5rem 0;
+        box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar .nav-link {
+        color: rgba(255, 255, 255, 0.8);
+        padding: 0.8rem 1.75rem;
+        margin: 0.3rem 1.25rem;
+        border-radius: 8px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        font-size: 0.95rem;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .sidebar .nav-link:hover {
+        color: var(--gold-400);
+        background-color: var(--black-700);
+        transform: translateX(6px);
+    }
+
+    .sidebar .nav-link.active {
+        color: var(--black-900);
+        background-color: var(--gold-500);
+        font-weight: 600;
+        box-shadow: 0 4px 14px rgba(255, 193, 7, 0.3);
+        transform: translateX(0);
+    }
+
+    .sidebar .nav-link.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 3px;
+        background-color: var(--gold-600);
+    }
+
+    .sidebar .nav-link i {
+        width: 22px;
+        text-align: center;
+        font-size: 1.15rem;
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar .nav-link:hover i {
+        transform: scale(1.1);
+    }
+
+    /* Main Content Area */
+    .main-content {
+        padding: 2.5rem;
+        background-color: var(--gray-100);
+        min-height: 100vh;
+    }
+
+    /* Premium Dashboard Cards */
+    .card-dashboard {
+        margin-bottom: 2rem;
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        overflow: hidden;
+        background-color: var(--white);
+        border-left: 4px solid var(--gold-500);
+    }
+
+    .card-dashboard:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-dashboard .card-header {
+        background-color: var(--white);
+        border-bottom: 1px solid var(--gray-200);
+        padding: 1.25rem 2rem;
+        font-weight: 600;
+        color: var(--black-800);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .card-dashboard .card-header .card-title {
+        font-size: 1.1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .card-dashboard .card-body {
+        padding: 2rem;
+    }
+
+    /* Enhanced UI Components */
+    .navbar {
+        background-color: var(--black-900) !important;
+        border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+        padding: 0.8rem 2rem;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar-brand {
+        color: var(--gold-500) !important;
+        font-weight: 700;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .navbar-brand i {
+        color: var(--gold-400);
+    }
+
+    .btn-gold {
+        background-color: var(--gold-500);
+        color: var(--black-900);
+        font-weight: 600;
+        border: none;
+        padding: 0.6rem 1.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(255, 193, 7, 0.3);
+    }
+
+    .btn-gold:hover {
+        background-color: var(--gold-400);
+        color: var(--black-900);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(255, 193, 7, 0.4);
+    }
+
+    .btn-gold-outline {
+        background-color: transparent;
+        color: var(--gold-500);
+        border: 2px solid var(--gold-500);
+        font-weight: 600;
+    }
+
+    .btn-gold-outline:hover {
+        background-color: var(--gold-500);
+        color: var(--black-900);
+    }
+
+    /* Enhanced Utility Classes */
+    .badge-gold {
+        background-color: var(--gold-500);
+        color: var(--black-900);
+        font-weight: 600;
+        padding: 0.4rem 0.9rem;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 5px rgba(255, 193, 7, 0.2);
+    }
+
+    .text-gold {
+        color: var(--gold-500);
+    }
+
+    .text-gold-light {
+        color: var(--gold-400);
+    }
+
+    .bg-black {
+        background-color: var(--black-800);
+    }
+
+    /* Table Styling */
+    .table-premium {
+        background-color: var(--white);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .table-premium thead {
+        background-color: var(--black-800);
+        color: var(--gold-400);
+    }
+
+    .table-premium th {
+        padding: 1rem 1.5rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 0.5px;
+    }
+
+    .table-premium td {
+        padding: 1rem 1.5rem;
+        border-top: 1px solid var(--gray-200);
+        vertical-align: middle;
+    }
+
+    .table-premium tr:hover td {
+        background-color: rgba(255, 193, 7, 0.05);
+    }
+</style>
 </head>
 <body>
     <div class="container-fluid">
