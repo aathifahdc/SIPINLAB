@@ -295,7 +295,6 @@ endlocal
 2. Atur Triggers → Daily → Waktu 01:00
 3. Atur Action → Start a program → arahkan ke `backup.bat`
 
-```
 ---
 Artinya: Jalankan backup setiap hari jam 01:00 pagi.
 
